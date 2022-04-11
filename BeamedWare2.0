@@ -16,7 +16,7 @@ local FirstLabel = FifthPage.AddLabel("Combat| FE")
 
 local FirstButton = FirstPage.AddButton("Silent Aimlock Orb", function()
 _G.KEY = "q"
-		_G.PART = "Head"
+		_G.PART = "HumanoidRootPart"
 		_G.PRED = 0.57
 		_G.Frame = Vector3.new(0, 0.53, 0)
 		local L_76_ = game:GetService "Workspace".CurrentCamera
