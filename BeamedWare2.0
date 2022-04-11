@@ -1,7 +1,7 @@
 game.StarterGui:SetCore("SendNotification",  {
- Title = "Title";
- Text = "Description";
- Icon = "";
+ Title = "BeamedWare 2.0 Finally";
+ Text = "Made By elias.#6231";
+ Icon = "http://www.roblox.com/asset/?id=951528747";
  Duration = 98083905839058095809389034;
  Button1 = "Close";
  Button2 = "Fuck Me 🥵";
