@@ -254,7 +254,7 @@ getgenv().AimPart = "HumanoidRootPart"
 	getgenv().FirstPerson = true
 	getgenv().TeamCheck = false
 	getgenv().PredictMovement = true
-	getgenv().PredictionVelocity = 5
+	getgenv().PredictionVelocity = 9
 	local L_27_, L_28_, L_29_, L_30_ =
             game:GetService "Players",
             game:GetService "UserInputService",
