@@ -242,12 +242,6 @@ _G.KEY = "q"
 			end
 		end
 end)
-local FirstSlider = FirstPage.AddSlider("Silent Aimlock Orb Prediction",  {Min = 0, Max = 100, Def = 0.57}, function(val)
-_G.PRED = (val)
-end)
-local FirstButton = FirstPage.AddButton("Best Prediction Is Dont Move The Slider Or 0", function()
-
-end)
 local FirstButton = ThirdPage.AddButton("Headless Client Sided", function()
 getgenv().game.Players.LocalPlayer.Character.Head.Transparency = 1
     getgenv().game.Players.LocalPlayer.Character.Head.face:Destroy()
