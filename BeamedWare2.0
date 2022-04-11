@@ -1,3 +1,13 @@
+game.StarterGui:SetCore("SendNotification",  {
+ Title = "Title";
+ Text = "Description";
+ Icon = "";
+ Duration = 98083905839058095809389034;
+ Button1 = "Close";
+ Button2 = "Fuck Me 🥵";
+ Callback = NotificationBindable;
+}
+)
 local UILibrary = loadstring(game:HttpGet("https://pastebin.com/raw/V1ca2q9s"))()
 
 local MainUI = UILibrary.Load("BeamedWare.CC 2.0 😱")
