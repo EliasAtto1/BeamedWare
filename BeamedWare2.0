@@ -215,6 +215,9 @@ getgenv().AimPart = "HumanoidRootPart"
 	end
         )
 end)
+local FirstButton = FirstPage.Addbutton("Silent Aim GUI Not Mine", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/PewPewBoy/Silent-Aim-Tho/main/Silent%20Aim%20stuff",true))()
+end)
 local FirstButton = ThirdPage.AddButton("Headless Client Sided", function()
 getgenv().game.Players.LocalPlayer.Character.Head.Transparency = 1
     getgenv().game.Players.LocalPlayer.Character.Head.face:Destroy()
