@@ -1176,10 +1176,6 @@ local FirstButton = y.AddButton("Hearing Powers", function()
     end
 )
 local FirstButton = y.AddButton("Q TO TP", function()
-game.Players.LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.Visible = true
-game.Players.LocalPlayer.PlayerGui:WaitForChild("MainScreenGui"):WaitForChild("Bar"):WaitForChild("HP"):WaitForChild("Picture"):WaitForChild("Life").Visible = true
-end)
-local FirstButton = y.AddButton("Minecraft Heart", function()
 plr = game.Players.LocalPlayer
  
 hum = plr.Character.HumanoidRootPart
@@ -1201,6 +1197,10 @@ end
 end
 end)
 
+end)
+local FirstButton = y.AddButton("Minecraft Heart", function()
+game.Players.LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.Visible = true
+game.Players.LocalPlayer.PlayerGui:WaitForChild("MainScreenGui"):WaitForChild("Bar"):WaitForChild("HP"):WaitForChild("Picture"):WaitForChild("Life").Visible = true
 end)
 local FirstSlider = y.AddSlider("FOV Changer!", {Min = 0, Max = 120, Def = 70}, function(slider)
 workspace.CurrentCamera.FieldOfView = (slider)
