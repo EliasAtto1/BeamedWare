@@ -5,7 +5,7 @@ game.StarterGui:SetCore("SendNotification",  {
  Duration = 98083905839058095809389034;
  Button1 = "Close";
  Button2 = "Mmmm Daddy 😏";
- Button 3 "Fuck Off";
+ Button3 = "Fuck Off";
  Callback = NotificationBindable;
 }
 )
