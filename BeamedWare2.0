@@ -1488,29 +1488,6 @@ local FirstButton = y.AddButton("Hearing Powers", function()
         Hearing()
     end
 )
-local FirstButton = y.AddButton("Q TO TP", function()
-plr = game.Players.LocalPlayer
- 
-hum = plr.Character.HumanoidRootPart
- 
-mouse = plr:GetMouse()
- 
- 
- 
-mouse.KeyDown:connect(function(key)
- 
-if key == "q" then
- 
-if mouse.Target then
- 
-hum.CFrame = CFrame.new(mouse.Hit.x, mouse.Hit.y + 5, mouse.Hit.z)
- 
-end
- 
-end
-end)
-
-end)
 local FirstButton = y.AddButton("Minecraft Heart", function()
 game.Players.LocalPlayer.PlayerGui.MainScreenGui.Bar.HP.Picture.Life.Visible = true
 game.Players.LocalPlayer.PlayerGui:WaitForChild("MainScreenGui"):WaitForChild("Bar"):WaitForChild("HP"):WaitForChild("Picture"):WaitForChild("Life").Visible = true
@@ -1518,21 +1495,697 @@ end)
 local FirstSlider = y.AddSlider("FOV Changer!", {Min = 0, Max = 120, Def = 70}, function(slider)
 workspace.CurrentCamera.FieldOfView = (slider)
 end)
-local ThirdButton = y.AddButton("Chat Logs", function()
+y.AddButton("Chat Logs", function()
 loadstring(game:HttpGet("https://pastebin.com/raw/nzXicwc1", true))()
 end)
-local ThirdButton = y.AddButton("Click To Sit", function()
+y.AddButton("Click To Sit", function()
 game.Players.LocalPlayer.Character.Humanoid.Sit = true
 end)
-local ThirdButton = y.AddButton("Hulk [NEEDS MAX BUFF TO WORK]", function()
+y.AddButton("Hulk [NEEDS MAX BUFF TO WORK]", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/EndmeMercury/endmemercury/main/titan"))()
 end)
-local FourthButton = y.AddButton("Auto Farm!", function()
-	local sound = Instance.new("Sound")
-	sound.SoundId = "rbxassetid://413861777"
-	sound.Parent = game:GetService("SoundService")
-	sound:Play()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/lerkermer/lua-projects/master/SwagAutofarm"))()
+y.AddButton("SpiderMan", function()
+	function AddVelocity(Vel, Char)
+		Char.HumanoidRootPart.Velocity = Char.HumanoidRootPart.Velocity+Vel
+	end
+
+	local Grapple = Instance.new('Animation');
+	Grapple.AnimationId = 'rbxassetid://3135389157';
+
+	local Swing = Instance.new('Animation');
+	Swing.AnimationId = 'rbxassetid://3135793091';
+
+	local Glide = Instance.new("Animation")
+	Glide.AnimationId = 'rbxassetid://3136090876';
+
+	function StopAudio()
+		game:GetService('Players').LocalPlayer.Character:FindFirstChild('LowerTorso'):FindFirstChild('BOOMBOXSOUND'):Stop();
+	end;
+
+	function Stop(i, v)
+		local w = coroutine.wrap(function()
+			wait(game:GetService('Players').LocalPlayer.Character:FindFirstChild('LowerTorso'):FindFirstChild('BOOMBOXSOUND').TimeLength-0.1)
+			if game:GetService('Players').LocalPlayer.Character:FindFirstChild('LowerTorso'):FindFirstChild('BOOMBOXSOUND').SoundId == 'rbxassetid://'..i and OriginalKeyUpValue == v then
+				StopAudio();
+			end;
+		end);
+		w();
+	end;
+
+	function Play(i, v, w)
+		if game:GetService('Players').LocalPlayer:FindFirstChildOfClass('Backpack'):FindFirstChild('[Boombox]') then
+			local Tool = nil;
+			if game:GetService('Players').LocalPlayer.Character:FindFirstChildOfClass('Tool') and w == true then
+				Tool = game:GetService('Players').LocalPlayer.Character:FindFirstChildOfClass('Tool')
+				game:GetService('Players').LocalPlayer.Character:FindFirstChildOfClass('Tool').Parent = game:GetService('Players').LocalPlayer:FindFirstChildOfClass('Backpack');
+			end;
+			game:GetService('Players').LocalPlayer:FindFirstChildOfClass('Backpack'):FindFirstChild('[Boombox]').Parent = game:GetService('Players').LocalPlayer.Character;
+			game:GetService('ReplicatedStorage'):FindFirstChild('MainEvent'):FireServer('Boombox', i);
+			game:GetService('Players').LocalPlayer.Character:FindFirstChild('[Boombox]').RequiresHandle = false;
+			if game:GetService('Players').LocalPlayer.Character:FindFirstChild('[Boombox]'):FindFirstChild('Handle') then
+				game:GetService('Players').LocalPlayer.Character:FindFirstChild('[Boombox]'):FindFirstChild('Handle'):Destroy();
+			end
+			game:GetService('Players').LocalPlayer.Character:FindFirstChild('[Boombox]').Parent = game:GetService('Players').LocalPlayer:FindFirstChildOfClass('Backpack')
+			if game:GetService('Players').LocalPlayer:FindFirstChildOfClass('PlayerGui'):FindFirstChild('MainScreenGui'):FindFirstChild('BoomboxFrame') then
+				game:GetService('Players').LocalPlayer:FindFirstChildOfClass('PlayerGui'):FindFirstChild('MainScreenGui'):FindFirstChild('BoomboxFrame').Visible = false;
+			end;
+			if Tool ~= true then
+				if Tool then
+					Tool.Parent = game:GetService('Players').LocalPlayer.Character
+				end;
+			end;
+			if v == true then
+				game:GetService('Players').LocalPlayer.Character:FindFirstChild('LowerTorso'):WaitForChild('BOOMBOXSOUND');
+				local x = coroutine.wrap(function()
+					repeat wait() until game:GetService('Players').LocalPlayer.Character:FindFirstChild('LowerTorso'):FindFirstChild('BOOMBOXSOUND').SoundId == 'rbxassetid://'..i and game:GetService('Players').LocalPlayer.Character:FindFirstChild('LowerTorso'):FindFirstChild('BOOMBOXSOUND').TimeLength > 0.01
+					OriginalKeyUpValue = OriginalKeyUpValue + 1;
+					Stop(i, OriginalKeyUpValue);
+				end);
+				x();
+			end;
+		end;
+	end;
+	local plr = game.Players.LocalPlayer
+	mouse = plr:GetMouse()
+	mouse.KeyDown:connect(function(key)
+		if key == "q" then
+			if game:GetService('Players').LocalPlayer:GetMouse().Target and Cooldown == false then
+				Cooldown = true;
+				game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(Grapple):Play();
+				Play(151733071, true, true)
+				wait(0.25)
+				local Rotation = game:GetService('Players').LocalPlayer.Character:FindFirstChild('HumanoidRootPart').CFrame - game:GetService('Players').LocalPlayer.Character:FindFirstChild('HumanoidRootPart').Position;
+				local Tween = game:GetService('TweenService'):Create(game:GetService('Players').LocalPlayer.Character:FindFirstChild('HumanoidRootPart'), TweenInfo.new(1, Enum.EasingStyle.Linear), {CFrame = CFrame.new(game:GetService('Players').LocalPlayer:GetMouse().Hit.X, game:GetService('Players').LocalPlayer:GetMouse().Hit.Y + 5, game:GetService('Players').LocalPlayer:GetMouse().Hit.Z) * Rotation})
+				Tween:Play();
+				game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(Swing):Play();
+				Tween.Completed:Wait();
+				for _, v in pairs(game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):GetPlayingAnimationTracks()) do
+					if v.Animation.AnimationId == Swing.AnimationId then
+						v:Stop();
+						wait(0.01)
+						game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(Glide):Play();
+						wait(.1)
+					end;
+				end;
+				Cooldown = false;
+				if not game:GetService('Players').LocalPlayer.Character:FindFirstChild(Tool) then
+					Tool.Parent = game:GetService('Players').LocalPlayer.Character;
+				end;
+			end;
+		end
+	end)
+end)
+y.AddButton("Skinny Af ", function()
+	game.Players.LocalPlayer.Chatted:Connect(function(msg)
+		if msg == "Skinny!" then
+			local Humanoid = game.Players.LocalPlayer.Character.Humanoid;
+			game.Players.LocalPlayer.Character.Head.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.Head.FaceCenterAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.Head.FaceFrontAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.Head.HairAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.Head.HatAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.Head.NeckRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftHand.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftHand.LeftWristRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftHand.LeftGripAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightHand.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.RightHand.RightWristRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightHand.RightGripAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperLeg.RightHipRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperLeg.RightKneeRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperLeg.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperLeg.LeftHipRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperLeg.LeftKneeRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperLeg.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.RootRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.WaistRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.LeftHipRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.RightHipRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.WaistCenterAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.WaistFrontAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.WaistBackAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.WaistRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.NeckRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.LeftShoulderRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.RightShoulderRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.BodyFrontAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.BodyBackAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.LeftCollarAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.RightCollarAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.NeckAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.OriginalSize:Destroy() 
+			game.Players.LocalPlayer.Character.RightFoot.OriginalSize:Destroy() 
+			game.Players.LocalPlayer.Character.RightFoot.RightAnkleRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftFoot.OriginalSize:Destroy() 
+			game.Players.LocalPlayer.Character.LeftFoot.LeftAnkleRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerLeg.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerLeg.LeftAnkleRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerLeg.LeftKneeRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerLeg.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerLeg.RightKneeRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerLeg.RightAnkleRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperArm.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperArm.LeftShoulderAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperArm.LeftElbowRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperArm.LeftShoulderRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperArm.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperArm.RightShoulderAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperArm.RightElbowRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperArm.RightShoulderRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerArm.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerArm.RightElbowRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerArm.RightWristRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerArm.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerArm.LeftElbowRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerArm.LeftWristRigAttachment.OriginalPosition:Destroy()
+			wait(0.5)
+			Humanoid:FindFirstChild("BodyTypeScale"):Destroy()
+			wait(1)
+
+			game.Players.LocalPlayer.Character.Head.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.Head.FaceCenterAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.Head.FaceFrontAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.Head.HairAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.Head.HatAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.Head.NeckRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftHand.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftHand.LeftWristRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftHand.LeftGripAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightHand.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.RightHand.RightWristRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightHand.RightGripAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperLeg.RightHipRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperLeg.RightKneeRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperLeg.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperLeg.LeftHipRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperLeg.LeftKneeRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperLeg.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.RootRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.WaistRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.LeftHipRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.RightHipRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.WaistCenterAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.WaistFrontAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.WaistBackAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.WaistRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.NeckRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.LeftShoulderRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.RightShoulderRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.BodyFrontAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.BodyBackAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.LeftCollarAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.RightCollarAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.NeckAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.OriginalSize:Destroy() 
+			game.Players.LocalPlayer.Character.RightFoot.OriginalSize:Destroy() 
+			game.Players.LocalPlayer.Character.RightFoot.RightAnkleRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftFoot.OriginalSize:Destroy() 
+			game.Players.LocalPlayer.Character.LeftFoot.LeftAnkleRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerLeg.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerLeg.LeftAnkleRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerLeg.LeftKneeRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerLeg.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerLeg.RightKneeRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerLeg.RightAnkleRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperArm.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperArm.LeftShoulderAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperArm.LeftElbowRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperArm.LeftShoulderRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperArm.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperArm.RightShoulderAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperArm.RightElbowRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperArm.RightShoulderRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerArm.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerArm.RightElbowRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerArm.RightWristRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerArm.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerArm.LeftElbowRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerArm.LeftWristRigAttachment.OriginalPosition:Destroy()
+			wait(0.5)
+			Humanoid:FindFirstChild("BodyWidthScale"):Destroy()
+			wait(1)
+
+			game.Players.LocalPlayer.Character.Head.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.Head.FaceCenterAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.Head.FaceFrontAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.Head.HairAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.Head.HatAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.Head.NeckRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftHand.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftHand.LeftWristRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftHand.LeftGripAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightHand.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.RightHand.RightWristRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightHand.RightGripAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperLeg.RightHipRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperLeg.RightKneeRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperLeg.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperLeg.LeftHipRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperLeg.LeftKneeRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperLeg.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.RootRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.WaistRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.LeftHipRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.RightHipRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.WaistCenterAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.WaistFrontAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.WaistBackAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.WaistRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.NeckRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.LeftShoulderRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.RightShoulderRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.BodyFrontAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.BodyBackAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.LeftCollarAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.RightCollarAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.NeckAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.OriginalSize:Destroy() 
+			game.Players.LocalPlayer.Character.RightFoot.OriginalSize:Destroy() 
+			game.Players.LocalPlayer.Character.RightFoot.RightAnkleRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftFoot.OriginalSize:Destroy() 
+			game.Players.LocalPlayer.Character.LeftFoot.LeftAnkleRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerLeg.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerLeg.LeftAnkleRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerLeg.LeftKneeRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerLeg.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerLeg.RightKneeRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerLeg.RightAnkleRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperArm.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperArm.LeftShoulderAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperArm.LeftElbowRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperArm.LeftShoulderRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperArm.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperArm.RightShoulderAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperArm.RightElbowRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperArm.RightShoulderRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerArm.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerArm.RightElbowRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerArm.RightWristRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerArm.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerArm.LeftElbowRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerArm.LeftWristRigAttachment.OriginalPosition:Destroy()
+			wait(0.5)
+			Humanoid:FindFirstChild("BodyDepthScale"):Destroy()
+			wait(1)
+
+			game.Players.LocalPlayer.Character.Head.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.Head.FaceCenterAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.Head.FaceFrontAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.Head.HairAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.Head.HatAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.Head.NeckRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftHand.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftHand.LeftWristRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftHand.LeftGripAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightHand.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.RightHand.RightWristRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightHand.RightGripAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperLeg.RightHipRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperLeg.RightKneeRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperLeg.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperLeg.LeftHipRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperLeg.LeftKneeRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperLeg.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.RootRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.WaistRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.LeftHipRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.RightHipRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.WaistCenterAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.WaistFrontAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.WaistBackAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LowerTorso.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.WaistRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.NeckRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.LeftShoulderRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.RightShoulderRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.BodyFrontAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.BodyBackAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.LeftCollarAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.RightCollarAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.NeckAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.UpperTorso.OriginalSize:Destroy() 
+			game.Players.LocalPlayer.Character.RightFoot.OriginalSize:Destroy() 
+			game.Players.LocalPlayer.Character.RightFoot.RightAnkleRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftFoot.OriginalSize:Destroy() 
+			game.Players.LocalPlayer.Character.LeftFoot.LeftAnkleRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerLeg.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerLeg.LeftAnkleRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerLeg.LeftKneeRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerLeg.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerLeg.RightKneeRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerLeg.RightAnkleRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperArm.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperArm.LeftShoulderAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperArm.LeftElbowRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftUpperArm.LeftShoulderRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperArm.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperArm.RightShoulderAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperArm.RightElbowRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightUpperArm.RightShoulderRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerArm.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerArm.RightElbowRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.RightLowerArm.RightWristRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerArm.OriginalSize:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerArm.LeftElbowRigAttachment.OriginalPosition:Destroy()
+			game.Players.LocalPlayer.Character.LeftLowerArm.LeftWristRigAttachment.OriginalPosition:Destroy()
+			wait(0.5)
+			Humanoid:FindFirstChild("HeadScale"):Destroy()
+			wait(1)
+		end
+	end)
+end)
+y.AddButton("Slash [H]", function()
+	local mouse = game.Players.LocalPlayer:GetMouse()
+	mouse.KeyDown:connect(function(key)
+		if key == "h" then
+			local Swing = Instance.new('Animation');
+			Swing.AnimationId = "rbxassetid://2788292075";
+			local ld = game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(Swing)
+			ld:Play()
+			ld:AdjustSpeed(1.3)
+		end
+	end)
+end)
+y.AddButton("Shazam! [CS]", function()
+	game:GetService("Players").LocalPlayer.Chatted:Connect(function(arg)
+		if arg == "Shazam!" then
+			repeat
+				wait();
+			until game:GetService('Players').LocalPlayer.Character:FindFirstChild('FULLY_LOADED_CHAR');
+			local ReplicatedStorage = game:GetService('ReplicatedStorage');
+			local Lightning = Instance.new('Part');
+			local Player = game:GetService('Players').LocalPlayer;
+			local Position = Player.Character.HumanoidRootPart.CFrame;
+			local l = Instance.new("Part")
+			l.Parent = workspace
+			l.BrickColor = BrickColor.new("Daisy orange")
+			l.Material = "Neon"
+			l.Anchored = true
+			l.CanCollide = false
+			l.Size = Vector3.new(10, 2047, 10.924);
+			l.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+			l.Orientation = Vector3.new(32, 0, 0)
+			local Sound = Instance.new('Sound', workspace);
+			Sound.PlaybackSpeed = 1;
+			Sound.Volume = 6.9;
+			Sound.SoundId = 'rbxassetid://3787180659';
+			Sound.PlayOnRemove = true;
+			Sound:Destroy();
+			for i = 1, 10 do
+				wait()
+				l.Transparency = l.Transparency + 0.1
+			end
+			if Player.Character:FindFirstChildOfClass('ShirtGraphic') then
+				Player.Character:FindFirstChildOfClass('ShirtGraphic'):Destroy()
+			end
+			if Player.Character:FindFirstChildOfClass('Shirt') then
+				Player.Character:FindFirstChildOfClass('Shirt').ShirtTemplate = 'rbxassetid://5453348825';
+			else
+				local Shirt = Instance.new('Shirt');
+				Shirt.Parent = Player.Character;
+				Shirt.ShirtTemplate = 'rbxassetid://5453348825';
+			end
+			if Player.Character:FindFirstChild('Pants') then
+				Player.Character:FindFirstChildOfClass('Pants').PantsTemplate = 'rbxassetid://5453350139';
+			else
+				local Pants = Instance.new('Pants');
+				Pants.Parent = Player.Character;
+				Pants.PantsTemplate = 'rbxassetid://5453350139';
+			end;
+			plr = game.Players.LocalPlayer
+			acc = plr.Character
+			face = acc.Head.face
+			face.Texture = "rbxassetid://6738024349"
+			wait(.5)
+			repeat wait() 
+			until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:findFirstChild("Head") and game.Players.LocalPlayer.Character:findFirstChild("Humanoid") 
+			local mouse = game.Players.LocalPlayer:GetMouse() 
+			repeat wait() until mouse
+			local plr = game.Players.LocalPlayer 
+			local torso = plr.Character.Head 
+			local flying = false
+			local deb = true 
+			local ctrl = {f = 0, b = 0, l = 0, r = 0} 
+			local lastctrl = {f = 0, b = 0, l = 0, r = 0} 
+			local maxspeed = 5000
+			local speed = 5000 
+			local hover = Instance.new("Animation", game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"))hover.Name="Hover"hover.AnimationId="rbxassetid://3541114300"
+			local fly = Instance.new("Animation", game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"))fly.Name="Fly"fly.AnimationId = "rbxassetid://3541044388"
+
+			function Fly() 
+				local bg = Instance.new("BodyGyro", torso) 
+				bg.P = 9e4 
+				bg.maxTorque = Vector3.new(9e9, 9e9, 9e9) 
+				bg.cframe = torso.CFrame 
+				local bv = Instance.new("BodyVelocity", torso) 
+				bv.velocity = Vector3.new(0,0.1,0) 
+				bv.maxForce = Vector3.new(9e9, 9e9, 9e9) 
+				repeat wait() 
+					plr.Character.Humanoid.PlatformStand = true 
+					if ctrl.l + ctrl.r ~= 100000 or ctrl.f + ctrl.b ~= 10000 then 
+						speed = speed+.0+(speed/maxspeed) 
+						if speed > maxspeed then 
+							speed = maxspeed 
+						end 
+					elseif not (ctrl.l + ctrl.r ~= 5 or ctrl.f + ctrl.b ~= 5) and speed ~= 5 then 
+						speed = speed-5
+						if speed > 5 then 
+							speed = -2 
+						end 
+					end 
+					if (ctrl.l + ctrl.r) ~= 5 or (ctrl.f + ctrl.b) ~= 5 then 
+						bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f+ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l+ctrl.r,(ctrl.f+ctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed 
+						lastctrl = {f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r} 
+					elseif (ctrl.l + ctrl.r) == 5 and (ctrl.f + ctrl.b) == 5 and speed ~= 5 then 
+						bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f+lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l+lastctrl.r,(lastctrl.f+lastctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed 
+					else 
+						bv.velocity = Vector3.new(0,0.1,0) 
+					end 
+					bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((ctrl.f+ctrl.b)*50*speed/maxspeed),0,0) 
+				until not flying 
+				for _, v in next, game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid'):GetPlayingAnimationTracks() do
+					if (v.Animation.AnimationId:match("rbxassetid")) then
+						v:Stop()
+					end
+				end
+				ctrl = {f = 0, b = 0, l = 0, r = 0} 
+				lastctrl = {f = 0, b = 0, l = 0, r = 0} 
+				speed = 5 
+				bg:Destroy() 
+				bv:Destroy() 
+				plr.Character.Humanoid.PlatformStand = false 
+			end 
+			mouse.KeyDown:connect(function(key) 
+				if key:lower() == "c" then 
+					if flying then flying = false 
+					else 
+						flying = true
+						for _, v in next, game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid'):GetPlayingAnimationTracks() do
+							if not (v.Animation.AnimationId:match(hover.AnimationId)) then
+								v:Stop()
+							end
+						end
+						plr.Character.Humanoid:LoadAnimation(hover):Play()
+						Fly() 
+					end 
+				elseif key:lower() == "w" then 
+					ctrl.f = 20
+					wait()
+					if flying == true then
+						for _, v in next, game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid'):GetPlayingAnimationTracks() do
+							if not (v.Animation.AnimationId:match(fly.AnimationId)) then
+								v:Stop()
+							end
+						end
+						plr.Character.Humanoid:LoadAnimation(fly):Play()
+					end
+				elseif key:lower() == "s" then
+					ctrl.b = -20
+				elseif key:lower() == "a" then
+					ctrl.l = -20
+				elseif key:lower() == "d" then
+					ctrl.r = 20
+				end 
+			end) 
+			mouse.KeyUp:connect(function(key) 
+				if key:lower() == "w" then
+					ctrl.f = 0
+					wait()
+					if flying == true then
+						for _, v in next, game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid'):GetPlayingAnimationTracks() do
+							if not (v.Animation.AnimationId:match(hover.AnimationId)) then
+								v:Stop()
+							end
+						end
+						plr.Character.Humanoid:LoadAnimation(hover):Play()
+					end
+				elseif key:lower() == "s" then 
+					ctrl.b = 0
+					wait()
+					if flying == true then
+						for _, v in next, game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid'):GetPlayingAnimationTracks() do
+							if not (v.Animation.AnimationId:match(hover.AnimationId)) then
+								v:Stop()
+							end
+						end
+						plr.Character.Humanoid:LoadAnimation(hover):Play()
+					end
+				elseif key:lower() == "a" then 
+					ctrl.l = 0
+					wait()
+					if flying == true then
+						for _, v in next, game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid'):GetPlayingAnimationTracks() do
+							if not (v.Animation.AnimationId:match(hover.AnimationId)) then
+								v:Stop()
+							end
+						end
+						plr.Character.Humanoid:LoadAnimation(hover):Play()
+					end
+				elseif key:lower() == "d" then 
+					ctrl.r = 0
+					wait()
+					if flying then
+						for _, v in next, game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid'):GetPlayingAnimationTracks() do
+							if not (v.Animation.AnimationId:match(hover.AnimationId)) then
+								v:Stop()
+							end
+						end
+						plr.Character.Humanoid:LoadAnimation(hover):Play()
+					end
+				end 
+			end)
+			Fly()
+			wait(.5)
+			superhuman = false
+			plr = game.Players.LocalPlayer
+			mouse = plr:GetMouse()
+			mouse.KeyDown:connect(function(key)				
+				if key == "z" and superhuman == false then
+					superhuman = true
+					game.Players.LocalPlayer.Character.Humanoid.Name = "Humz"
+					game.Players.LocalPlayer.Character.Humz.WalkSpeed = 100
+					game.Players.LocalPlayer.Character.Humz.JumpPower = 200
+				elseif key == "z" and superhuman == true then
+					superhuman = false
+					game.Players.LocalPlayer.Character.Humz.WalkSpeed = 16
+					game.Players.LocalPlayer.Character.Humz.JumpPower = 50
+					game.Players.LocalPlayer.Character.Humz.Name = "Humanoid"
+				end
+
+			end)   
+			wait(.5)
+			local Animate = game.Players.LocalPlayer.Character.Animate
+			Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616111295"
+			Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616113536"
+			Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616122287"
+			Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616117076"
+			Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616115533"
+			Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616104706"
+			Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616108001"
+			game.Players.LocalPlayer.Character.Humanoid.Jump = true
+		end
+	end)
+end)
+y.AddButton("Open Admin Door [CS]", function()
+game:GetService('Workspace'):FindFirstChild('MAP'):FindFirstChild('EVIL_SPECIAL'):FindFirstChildWhichIsA('Sound').Volume = math.huge;
+	game:GetService('Workspace'):FindFirstChild('MAP'):FindFirstChild('EVIL_SPECIAL'):FindFirstChildWhichIsA('Sound').Playing = true;
+	for i = 1, 26 do
+		wait();
+		workspace:FindFirstChild('MAP'):FindFirstChild('EVIL_SPECIAL').CFrame = workspace:FindFirstChild('MAP'):FindFirstChild('EVIL_SPECIAL').CFrame + Vector3.new(0, 1, 0);
+	end;
+end)
+y.AddButton("Close Admin Door [CS]", function()
+	game:GetService('Workspace'):FindFirstChild('MAP'):FindFirstChild('EVIL_SPECIAL'):FindFirstChildWhichIsA('Sound').Playing = true;
+	for i = 1, 26 do
+		wait();
+		workspace:FindFirstChild('MAP'):FindFirstChild('EVIL_SPECIAL').CFrame = workspace:FindFirstChild('MAP'):FindFirstChild('EVIL_SPECIAL').CFrame + Vector3.new(0, -1, 0);
+	end;
+end)
+y.AddButton("INF ZOOM", function()
+game.Players.localPlayer.CameraMaxZoomDistance = 150
+	game.Players.LocalPlayer.CameraMinZoomDistance = 0
+end)
+y.AddButton("Boneless", function()
+	local Stuff = {"RightHand", "LeftHand","RightUpperArm","RightLowerArm","LeftUpperArm","LeftLowerArm","Head","UpperTorso"}
+
+	pcall(function()
+		for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+			for z, AdminName in ipairs(Stuff) do
+				if v.Name == AdminName then
+					if v:FindFirstChildOfClass("Motor6D") then
+						local Weld = v:FindFirstChildOfClass("Motor6D")
+						Weld:Destroy()
+					end
+				end
+			end
+		end
+	end)
+end)
+y.AddButton("Taze Animation [H]", function()
+local mouse = game.Players.LocalPlayer:GetMouse()
+	mouse.KeyDown:connect(function(key)
+		if key == "h" then
+			local Swing = Instance.new('Animation');
+			Swing.AnimationId = "rbxassetid://5641749824";
+			local ld = game:GetService('Players').LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):LoadAnimation(Swing)
+			ld:Play()
+			ld:AdjustSpeed(1.3)
+		end
+	end)
+end)
+y.AddButton("No Right Leg", function()
+	game.Players.LocalPlayer.Character.RightUpperLeg:Destroy()
+end)
+y.AddButton("No Left Leg", function()
+	game.Players.LocalPlayer.Character.LeftUpperLeg:Destroy()
+end)
+y.AddButton("Destroy All Seats", function()
+	for i, v in next, game.Workspace:GetDescendants() do
+		if v:IsA("Seat") then
+			v:Destroy()
+		end
+	end
+end)
+y.AddButton("Destroy Face [FE]", function()
+	game.Players.LocalPlayer.Character.Head.face:Destroy()
+end)
+y.AddSlider("Money Change", {Min = 0, Max = 999999999, Def = 200000}, function(Value)
+	game.Players.LocalPlayer.DataFolder.Currency.Value = Value
+end)
+y.AddSlider("Bounty Change", {Min = 0, Max = 999999999, Def = 200000}, function(Value)
+	game.Players.LocalPlayer.DataFolder.Information.Wanted.Value = Value
+end)
+y.AddButton("Money esp", function()
+	local ESPholder = Instance.new("Folder", game.CoreGui)
+	function cham(object)
+		if object.Name == "MoneyDrop" then
+			local a = Instance.new("BoxHandleAdornment", ESPholder)
+			a.Adornee = object
+			a.AlwaysOnTop = true
+			a.ZIndex = 10
+			a.Size = object.Size
+			a.Transparency = 0.3
+			a.Color = object.BrickColor
+			local bill = object:WaitForChild("BillboardGui")
+			bill.AlwaysOnTop = true
+			bill.Size = UDim2.new(2, 10, 1, 5)
+			spawn(function()
+				while true do
+					if object.Parent.ChildRemoving:wait() == object then
+						a:Destroy()
+						break
+					end
+				end
+			end)
+		end
+	end
+	for i, v in next, game.Workspace.Ignored.Drop:GetChildren() do
+		cham(v)
+	end
+	game.Workspace.Ignored.Drop.ChildAdded:connect(cham)
 end)
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 game.Players.PlayerAdded:Connect(function(plr) 
